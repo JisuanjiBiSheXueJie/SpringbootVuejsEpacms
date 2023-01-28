@@ -1,0 +1,31 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.ml-5{
+	margin-left: 5px;
+}
+
+.mr-5{
+	margin-right: 5px;
+}
+
+.ml-10{
+	margin-left: 10px;
+}
+
+.mr-10{
+	margin-right: 10px;
+}
+
+
+.pd-10{
+	padding: 10px 0;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevin.epacms.mapper.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.kevin.epacms.entity.Permission">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="path" property="path"/>
+        <result column="description" property="description"/>
+        <result column="icon" property="icon"/>
+    </resultMap>
+
+    <select id="getMenuByRid" resultType="com.kevin.epacms.entity.Permission">
+        SELECT
+            p.id,
+            p.NAME,
+            p.path,
+            p.icon,
+            p.description
+        FROM
+            t_permission p
+                INNER JOIN t_role_permission rp ON p.id = rp.permission_id
+                INNER JOIN t_role r ON r.id = rp.role_id
+        WHERE
+            r.id = #{roleId}
+    </select>
+
+</mapper>

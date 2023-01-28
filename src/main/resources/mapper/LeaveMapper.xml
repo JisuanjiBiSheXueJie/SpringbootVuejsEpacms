@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevin.epacms.mapper.LeaveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.kevin.epacms.entity.Leave">
+        <id column="id" property="id" />
+        <result column="uid" property="uid" />
+        <result column="reason" property="reason" />
+        <result column="trajectory" property="trajectory" />
+        <result column="leave_time" property="leaveTime" />
+        <result column="status" property="status" />
+        <result column="return_time" property="returnTime" />
+        <result column="apply_time" property="applyTime" />
+        <result column="username" property="user.username"/>
+        <result column="sno" property="user.sno"/>
+        <result column="real_name" property="user.realName"/>
+        <result column="phone" property="user.phone"/>
+        <result column="email" property="user.email"/>
+        <result column="academy" property="user.academy"/>
+        <result column="class_num" property="user.classNum"/>
+        <result column="dormitory_num" property="user.dormitoryNum"/>
+    </resultMap>
+
+    <select id="selectLeavePage" resultType="com.kevin.epacms.entity.Leave" resultMap="BaseResultMap">
+        SELECT
+            l.id,
+            u.sno,
+            u.username,
+            u.real_name,
+            u.phone,
+            u.email,
+            u.dormitory_num,
+            u.class_num,
+            u.academy,
+            l.*
+        FROM
+            t_user u
+        JOIN t_leave l ON u.id = l.uid ${ew.customSqlSegment}
+
+    </select>
+
+</mapper>

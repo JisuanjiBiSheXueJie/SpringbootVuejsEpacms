@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevin.epacms.mapper.RecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.kevin.epacms.entity.Record">
+        <id column="id" property="id" />
+        <result column="position" property="position" />
+        <result column="temperature" property="temperature" />
+        <result column="cough" property="cough" />
+        <result column="fever" property="fever" />
+        <result column="time" property="time" />
+        <result column="username" property="user.username"/>
+        <result column="sno" property="user.sno"/>
+        <result column="real_name" property="user.realName"/>
+        <result column="phone" property="user.phone"/>
+        <result column="email" property="user.email"/>
+        <result column="academy" property="user.academy"/>
+        <result column="class_num" property="user.classNum"/>
+        <result column="dormitory_num" property="user.dormitoryNum"/>
+    </resultMap>
+    
+    <select id="getRecordByCondition" resultType="com.kevin.epacms.entity.Record" resultMap="BaseResultMap">
+        SELECT
+            r.id,
+            u.sno,
+            u.username,
+            u.real_name,
+            u.phone,
+            u.email,
+            u.dormitory_num,
+            u.class_num,
+            u.academy,
+            position,
+            temperature,
+            cough,
+            fever,
+            `time`
+        FROM
+            t_user u
+        JOIN t_record r ON u.id = r.uid ${ew.customSqlSegment}
+
+    </select>
+    
+</mapper>
